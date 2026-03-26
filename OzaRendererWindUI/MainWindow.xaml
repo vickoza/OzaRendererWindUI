@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="OzaRendererWindUI.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:OzaRendererWindUI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="OzaRendererWindUI">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <MenuBar Grid.Row="0">
+            <MenuBarItem Title="File">
+                <MenuFlyoutItem Text="Open Scence" Click="Open"/>
+                <MenuFlyoutItem Text="Save Image/Animations" Click="Save"/>
+                <MenuFlyoutItem Text="Exit" Click="Exit"/>
+            </MenuBarItem>
+            <MenuBarItem Title="Renderer">
+                <MenuFlyoutItem Name="OptionVulkan" Text="Vulkan" Click="UseVulkan"/>
+                <MenuFlyoutItem Name="OptionDirectX" Text="DirectX" Click="UseDirectX"/>
+                <MenuFlyoutItem Name="OptionOpenGL" Text="OpenGL" Click="UseOpenGL"/>
+            </MenuBarItem>
+        </MenuBar>
+
+        <!-- SwapChainPanel serves as a rendering surface for DirectX/Vulkan/OpenGL backends -->
+        <SwapChainPanel x:Name="RenderPanel" Grid.Row="1"/>
+
+    </Grid>
+</Window>
