@@ -1,6 +1,7 @@
 #pragma once
 #include <winrt/Windows.Foundation.h>
 #include <winrt/Microsoft.UI.Xaml.h>
+#include "Scene.h"
 #include "MainWindow.g.h"
 
 namespace winrt::OzaRendererWindUI::implementation
@@ -18,7 +19,7 @@ namespace winrt::OzaRendererWindUI::implementation
             // Xaml objects should not call InitializeComponent during construction.
             // See https://github.com/microsoft/cppwinrt/tree/master/nuget#initializecomponent
         }
-		//void InitializeComponent();
+		void InitializeComponent();
         int32_t MyProperty();
         void MyProperty(int32_t value);
 		winrt::fire_and_forget Open(winrt::Windows::Foundation::IInspectable const&, winrt::Microsoft::UI::Xaml::RoutedEventArgs const&);
@@ -28,6 +29,7 @@ namespace winrt::OzaRendererWindUI::implementation
         void UseVulkan(winrt::Windows::Foundation::IInspectable const&, winrt::Microsoft::UI::Xaml::RoutedEventArgs const&);
         void UseOpenGL(winrt::Windows::Foundation::IInspectable const&, winrt::Microsoft::UI::Xaml::RoutedEventArgs const&);
 	private:
+		Scene scene;
         renderMode currentRenderMode;
     };
 }

@@ -22,9 +22,9 @@
                 <MenuFlyoutItem Text="Exit" Click="Exit"/>
             </MenuBarItem>
             <MenuBarItem Title="Renderer">
-                <MenuFlyoutItem Name="OptionVulkan" Text="Vulkan" Click="UseVulkan"/>
-                <MenuFlyoutItem Name="OptionDirectX" Text="DirectX" Click="UseDirectX"/>
-                <MenuFlyoutItem Name="OptionOpenGL" Text="OpenGL" Click="UseOpenGL"/>
+                <ToggleMenuFlyoutItem  Name="OptionVulkan" Text="Vulkan" Click="UseVulkan"/>
+                <ToggleMenuFlyoutItem  Name="OptionDirectX" Text="DirectX" Click="UseDirectX"/>
+                <ToggleMenuFlyoutItem  Name="OptionOpenGL" Text="OpenGL" Click="UseOpenGL"/>
             </MenuBarItem>
         </MenuBar>
 

@@ -4,7 +4,8 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="OzaRendererWindUI/OzaRendererWindUI.vcxproj">
+  <Project Path="OzaRendererWindUI/OzaRendererWindUI.vcxproj" Id="c864558d-3a4c-46e8-bc76-0c8ced0a1547">
     <Deploy />
   </Project>
+  <Project Path="scenceCore/scenceCore.vcxitems" Id="09da2529-dccb-455c-93cd-37c23dffd4dd" />
 </Solution>

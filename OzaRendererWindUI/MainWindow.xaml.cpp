@@ -3,7 +3,13 @@
 #if __has_include("MainWindow.g.cpp")
 #include "MainWindow.g.cpp"
 #endif
+#include <winrt/Windows.Foundation.h>
+#include <winrt/Windows.Storage.Pickers.h>
+#include <winrt/Microsoft.UI.Xaml.Controls.h>
+#include <Microsoft.UI.Xaml.Window.h>
 #include <winrt/Microsoft.Windows.Storage.Pickers.h>
+#include <ShObjIdl.h>
+#include <fstream>
 
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;
@@ -26,45 +32,76 @@ namespace winrt::OzaRendererWindUI::implementation
     {
         // FileOpenPicker has no implicit default constructor in this projection.
         // Construct with nullptr to obtain an empty/activatable object reference.
-        /*winrt::Microsoft::Windows::Storage::Pickers::FileOpenPicker openFilePicker{this};
-        //openFilePicker.CommitButtonText(L"Choose scene to load");
+        auto windowNative{ (static_cast<winrt::Microsoft::UI::Xaml::Window>(*this)).as<::IWindowNative>() };
+        HWND hWnd{ 0 };
+        windowNative->get_WindowHandle(&hWnd); 
+        Windows::Storage::Pickers::FileOpenPicker openFilePicker;
+        auto initializeWithWindow{ openFilePicker.as<::IInitializeWithWindow>() };
+        openFilePicker.CommitButtonText(L"Choose scene to load");
+        openFilePicker.FileTypeFilter().ReplaceAll({ L".oscn" });
+        initializeWithWindow->Initialize(hWnd);        
         auto result{ co_await openFilePicker.PickSingleFileAsync() };
         if (result)
         {
+			std::ofstream file{ result.Path().c_str() };
+			scene.loadScence(file);
         }
         else
         {
-        }*/
+        }
         co_return;
     }
     
     winrt::fire_and_forget MainWindow::Save(winrt::Windows::Foundation::IInspectable const&, winrt::Microsoft::UI::Xaml::RoutedEventArgs const&)
     {
+        auto windowNative{ (static_cast<winrt::Microsoft::UI::Xaml::Window>(*this)).as<::IWindowNative>() };
+        HWND hWnd{ 0 };
+        windowNative->get_WindowHandle(&hWnd);
+        Windows::Storage::Pickers::FileSavePicker saveFilePicker;
+        auto initializeWithWindow{ saveFilePicker.as<::IInitializeWithWindow>() };
+        //saveFilePicker.CommitButtonText(L"Choose scene to load");
+        //saveFilePicker.FileTypeFilter().ReplaceAll({ L".oscn" });
+        initializeWithWindow->Initialize(hWnd);
+        auto result{ co_await saveFilePicker.PickSaveFileAsync() };
+        if (result)
+        {
+        }
+        else
+        {
+        }
         co_return;
     }
 
     void MainWindow::Exit(winrt::Windows::Foundation::IInspectable const&, winrt::Microsoft::UI::Xaml::RoutedEventArgs const&)
     {
+		exit(0);
     }
 
-    /*void MainWindow::InitializeComponent()
+    void MainWindow::InitializeComponent()
     {
-        OptionVulkan();
+        MainWindowT<MainWindow>::InitializeComponent();
+        OptionVulkan().IsChecked(true);
 		currentRenderMode = renderMode::Vulkan;
-    }*/
+    }
 
     void MainWindow::UseDirectX(winrt::Windows::Foundation::IInspectable const&, winrt::Microsoft::UI::Xaml::RoutedEventArgs const&)
     {
         currentRenderMode = renderMode::DirectX;
+		OptionVulkan().IsChecked(false);
+		OptionOpenGL().IsChecked(false);
     }
 
     void MainWindow::UseVulkan(winrt::Windows::Foundation::IInspectable const&, winrt::Microsoft::UI::Xaml::RoutedEventArgs const&)
     {
         currentRenderMode = renderMode::Vulkan;
+		OptionDirectX().IsChecked(false);
+		OptionOpenGL().IsChecked(false);
     }
 
     void MainWindow::UseOpenGL(winrt::Windows::Foundation::IInspectable const&, winrt::Microsoft::UI::Xaml::RoutedEventArgs const&)
     {
         currentRenderMode = renderMode::OpenGL;
+		OptionVulkan().IsChecked(false);
+		OptionDirectX().IsChecked(false);
     }
 }
