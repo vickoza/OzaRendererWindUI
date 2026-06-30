@@ -43,8 +43,8 @@ namespace winrt::OzaRendererWindUI::implementation
         auto result{ co_await openFilePicker.PickSingleFileAsync() };
         if (result)
         {
-			std::ofstream file{ result.Path().c_str() };
-			scene.loadScence(file);
+			std::ifstream file{ result.Path().c_str() };
+			scene.loadScene(file);
         }
         else
         {

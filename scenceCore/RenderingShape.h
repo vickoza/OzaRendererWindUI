@@ -7,24 +7,34 @@ protected:
 
 
 	bool dynamic;
+	RenderingShape(std::array<double, 4> const& rot, std::array<double, 4> const& trans, std::array<double, 4> const& scl,
+		std::array<double, 4> const& amb, std::array<double, 4> const& diff, std::array<double, 4> const& spec,
+		double shininessVal, int alphaFuncVal, double alphaValueVal, bool alphaTransparencyVal)
+		: 
+			eulerRot{rot}, 
+			translation{trans}, 
+			scale{scl}, 
+			ambient{amb},
+			diffuse{diff},
+			specular{spec},
+			shininess{shininessVal}, 
+			alphaFunc{alphaFuncVal}, 
+			alphaValue{alphaValueVal}, 
+			alphaTransparency{alphaTransparencyVal}
+	{ 
+	}
 
 	std::array<double, 4> eulerRot;
 	std::array<double, 4> translation;
 	std::array<double, 4>	scale;
 
 	std::array<double, 4> ambient;
-	bool		ambientSet;
 	std::array<double, 4> diffuse;
-	bool		diffuseSet;
 	std::array<double, 4> specular;
-	bool		specularSet;
 	double		shininess;
-	bool		shininessSet;
 	int		alphaFunc;		// Function and value for alpha testing
 	double		alphaValue;
-	bool		alphaDataSet;
 	bool		alphaTransparency;
-	bool		transparencySet;
 	friend class Scene;
 public:
 	virtual ~RenderingShape() = default;

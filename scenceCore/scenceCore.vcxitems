@@ -14,13 +14,23 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Box.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Camera.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Cone.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Cylinder.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Lighting.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Renderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)RenderingShape.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Sphere.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Torus.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Box.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Cone.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Cylinder.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Sphere.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Torus.cpp" />
   </ItemGroup>
 </Project>

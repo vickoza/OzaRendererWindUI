@@ -3,7 +3,7 @@
 #include "Lighting.h"
 #include "Camera.h"
 #include <memory>
-#include <ostream>
+#include <istream>
 #include <vector>
 class Scene
 {
@@ -11,6 +11,6 @@ class Scene
 	std::vector<std::unique_ptr<Lighting>> lightings;
 	Camera camera;
 public:
-	void loadScence(std::ostream& input);
+	void loadScene(std::istream& input);
 };
 

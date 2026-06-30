@@ -8,4 +8,7 @@
     <Deploy />
   </Project>
   <Project Path="scenceCore/scenceCore.vcxitems" Id="09da2529-dccb-455c-93cd-37c23dffd4dd" />
+  <Project Path="VulkanRenderer/VulkanRenderer.vcxproj" Id="ee793dd7-29e0-492f-b7f1-1a94d957b459">
+    <Platform Solution="*|ARM64" Project="x64" />
+  </Project>
 </Solution>
